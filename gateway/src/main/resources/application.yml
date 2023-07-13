@@ -1,0 +1,27 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: gateway-service
+  main:
+    allow-bean-definition-overriding: true
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.20.4.56:8848,172.20.4.56:8858,172.20.4.56:8868
+      config:
+        server-addr: 172.20.4.56:8848,172.20.4.56:8858,172.20.4.56:8868
+        file-extension: yaml
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: oauth2-service-routes
+          uri: Lb://oauth2-service
+          predicates:
+            - Path=/**
+          filters:
+            - StripPrefix=1
