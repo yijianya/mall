@@ -1,4 +1,4 @@
-package config;
+package com.yijianya.oauth.config;
 
 import com.yijianya.oauth.service.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
